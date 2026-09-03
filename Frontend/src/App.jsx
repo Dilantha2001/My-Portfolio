@@ -4,9 +4,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Hero from './components/Hero';
 import SectionTwo from './components/SectionTwo';
+import Process from './components/Process';
 import Services from './components/Services';
 import Work from './components/Work';
-import Process from './components/Process';
 import Footer from './components/Footer';
 
 function App() {
@@ -38,9 +38,9 @@ function App() {
     <>
       <Hero />
       <SectionTwo />
+      <Process />
       <Services />
       <Work />
-      <Process />
       <Footer />
     </>
   );

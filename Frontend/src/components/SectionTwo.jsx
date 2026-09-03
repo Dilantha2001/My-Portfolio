@@ -14,18 +14,35 @@ export default function SectionTwo() {
   const headingRef = useRef();
 
   useGSAP(() => {
-    // Text reveal (custom split text)
+    // Scrubbed text reveal (color fill effect)
     const chars = gsap.utils.toArray('.char', headingRef.current);
     
-    gsap.to(chars, {
-      y: '0%',
-      duration: 0.8,
-      stagger: 0.02,
-      ease: 'power3.out',
+    // Text starts hidden
+    gsap.set(chars, { opacity: 0, color: 'transparent', y: '0%' });
+    
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: headingRef.current,
         start: 'top 80%',
-      },
+        end: 'bottom 40%',
+        scrub: 1,
+      }
+    });
+
+    chars.forEach((char, index) => {
+      // Step 1: Character appears and turns red
+      tl.to(char, { 
+        opacity: 1, 
+        color: '#e33b26', 
+        duration: 0.5,
+        ease: 'power1.inOut'
+      }, index * 0.1)
+      // Step 2: Character transitions to black
+      .to(char, { 
+        color: '#111111', 
+        duration: 0.5,
+        ease: 'power1.inOut'
+      }, (index * 0.1) + 0.3); // Starts turning black slightly before the red finishes
     });
 
     // Fade in text body
@@ -39,6 +56,27 @@ export default function SectionTwo() {
         trigger: textRef.current,
         start: 'top 70%',
       },
+    });
+
+    // Expanding Video Transition
+    gsap.to('.s2-expanding-video', {
+      scale: 3.5,
+      x: () => {
+        const el = document.querySelector('.s2-expanding-video');
+        if (!el) return 0;
+        const rect = el.getBoundingClientRect();
+        return (window.innerWidth / 2) - rect.left - (rect.width / 2);
+      },
+      y: () => window.innerHeight * 0.2, // Reduced this drastically so it stays well within the white page and cannot bleed out
+      ease: 'power1.inOut',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'bottom 80%',
+        end: 'bottom -10%', // Stop the pin even earlier
+        scrub: true,
+        pin: '.s2-expanding-video', 
+        pinSpacing: false
+      }
     });
 
     // Infinite Marquee
@@ -60,20 +98,23 @@ export default function SectionTwo() {
           <div className="s2-tag">UI/UX DESIGN</div>
           
           <div className="s2-cards">
-            {/* Placeholder for interactive cards */}
-            <div className="s2-card" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1542744094-24638ea0b3b5?q=80&w=400')" }}></div>
-            <div className="s2-card" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400')" }}></div>
+            {/* The expanding video thumbnail */}
+            <div className="s2-expanding-video">
+              <div className="s2-video-inner" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600')" }}>
+                <div className="play-btn">▶</div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="s2-right" ref={textRef}>
           <h2 className="s2-desc-heading" ref={headingRef}>
             <SplitText>
-              Webflow developer with 7+ years of experience, a team of designers, animators, and strategists.
+              10 years as a pro illusionist taught me how to capture attention and bend reality.
             </SplitText>
           </h2>
           <p className="s2-desc-text">
-            Building digital experiences that convert visitors into believers. Every animation is crafted to improve usability, reinforce your brand, and create a memorable experience.
+            Now, I build digital experiences that do the same. We combine psychology, motion, and Webflow to create websites that don't just look good—they perform like magic.
           </p>
           
           <div className="s2-actions">
@@ -83,10 +124,17 @@ export default function SectionTwo() {
         </div>
       </div>
 
-      <div className="s2-marquee-container">
-        <div className="s2-marquee" ref={marqueeRef}>
-          <span>117+ PROJECTS DELIVERED ♣ 15+ COUNTRIES ♣ GSAP MOTION ♣ WEBFLOW AWARDS ♣</span>
-          <span>117+ PROJECTS DELIVERED ♣ 15+ COUNTRIES ♣ GSAP MOTION ♣ WEBFLOW AWARDS ♣</span>
+      {/* Infinite Marquee */}
+      <div className="s2-marquee-container" ref={marqueeRef}>
+        <div className="s2-marquee">
+          <span>117+ PROJECTS DELIVERED ♣</span>
+          <span>15+ COUNTRIES ♣</span>
+          <span>GSAP MOTION ♣</span>
+          <span>WEBFLOW AWARDS ♣</span>
+          <span>117+ PROJECTS DELIVERED ♣</span>
+          <span>15+ COUNTRIES ♣</span>
+          <span>GSAP MOTION ♣</span>
+          <span>WEBFLOW AWARDS ♣</span>
         </div>
       </div>
     </section>
