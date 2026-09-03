@@ -1,0 +1,103 @@
+.work-section {
+  position: relative;
+  width: 100%;
+}
+
+.work-panel {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+  transform-origin: top center;
+}
+
+.work-panel-inner {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.work-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  grid-column: 1 / -1;
+  margin-bottom: 2rem;
+}
+
+.work-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.work-number {
+  font-family: 'Inter', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.work-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.work-image-container {
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.work-image-inner {
+  width: 100%;
+  height: 130%;
+  position: absolute;
+  top: -15%;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Specific text colors depending on background */
+.work-panel.dark-text {
+  color: #111;
+}
+
+.work-panel.light-text {
+  color: #fff;
+}
+
+@media (max-width: 991px) {
+  .work-panel-inner {
+    grid-template-columns: 1fr;
+    padding: 0 2rem;
+    gap: 2rem;
+  }
+  
+  .work-title {
+    font-size: 2.5rem;
+  }
+  
+  .work-number {
+    font-size: 2rem;
+  }
+  
+  .work-image-container {
+    height: 40vh;
+  }
+}
