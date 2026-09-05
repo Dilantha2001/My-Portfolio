@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { PORTFOLIO_INFO } from '../portfolioData';
 import './Footer.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -87,19 +88,23 @@ export default function Footer() {
           <div className="footer-socials">
             <span className="label">Follow</span>
             <div className="social-icons">
-              <a href="#" className="icon">W</a>
-              <a href="#" className="icon">IG</a>
-              <a href="#" className="icon">IN</a>
+              {PORTFOLIO_INFO.personal.contact.socials.map((social) => (
+                <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" className="icon">
+                  {social.label.substring(0, 2).toUpperCase()}
+                </a>
+              ))}
             </div>
           </div>
           <div className="footer-contact">
             <span className="label">Write</span>
-            <a href="mailto:hey@nbnzia.com" className="contact-email">HEY@NBNZIA.COM</a>
+            <a href={`mailto:${PORTFOLIO_INFO.personal.contact.email}`} className="contact-email">
+              {PORTFOLIO_INFO.personal.contact.email.toUpperCase()}
+            </a>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <span>© YEVHENII NEBENZIA, 2026</span>
+          <span>© {PORTFOLIO_INFO.personal.name.toUpperCase()}, {new Date().getFullYear()}</span>
           <span>ALL RIGHTS RESERVED</span>
         </div>
 

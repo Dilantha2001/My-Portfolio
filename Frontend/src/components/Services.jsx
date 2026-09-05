@@ -6,38 +6,22 @@ import './Services.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const servicesData = [
-  {
-    id: '01',
-    title: 'Webflow Development',
-    desc: 'I build every Webflow project from scratch using BEM class naming, custom GSAP animations, and a CMS architecture designed to scale. Whether it\'s a marketing site, a multi-page platform, or a complex corporate build - the code is clean, the interactions are smooth, and the site performs.',
-    img: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=600',
-  },
-  {
-    id: '02',
-    title: 'UI/UX Design',
-    desc: 'Intuitive user experiences, scalable design systems, and pixel-perfect interfaces that balance business goals with user needs.',
-    img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600',
-  },
-  {
-    id: '03',
-    title: 'Motion & Animation',
-    desc: 'From subtle micro-interactions to advanced product animations, every transition is crafted to improve usability and reinforce your brand.',
-    img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600',
-  },
-  {
-    id: '04',
-    title: 'Marketing Strategy',
-    desc: 'Strategic direction and positioning to ensure your digital presence connects with your target audience effectively.',
-    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600',
-  },
-  {
-    id: '05',
-    title: 'Copywriting',
-    desc: 'Compelling narratives and clear messaging that speak directly to your customers and drive conversions.',
-    img: 'https://images.unsplash.com/photo-1455390582262-044cdead27d8?q=80&w=600',
-  },
+import { PORTFOLIO_INFO } from '../portfolioData';
+
+const images = [
+  'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=600',
+  'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600',
+  'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600',
+  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600',
+  'https://images.unsplash.com/photo-1455390582262-044cdead27d8?q=80&w=600'
 ];
+
+const servicesData = PORTFOLIO_INFO.skills.map((category, index) => ({
+  id: `0${index + 1}`,
+  title: category.title,
+  desc: `Extensive experience with ${category.skills.map(s => s.name).join(', ')}.`,
+  img: images[index % images.length],
+}));
 
 export default function Services() {
   const containerRef = useRef();
@@ -77,13 +61,19 @@ export default function Services() {
     items.forEach((item, index) => {
       const desc = item.querySelector('.service-desc-wrapper');
       const img = item.querySelector('.service-image-wrapper');
+      const title = item.querySelector('.service-name');
+      const number = item.querySelector('.service-number');
       
       if (index === activeIndex) {
-        gsap.to(desc, { height: 'auto', duration: 0.4, ease: 'power2.out' });
-        gsap.to(img, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', delay: 0.1 });
+        gsap.to(desc, { height: 'auto', duration: 0.2, ease: 'power2.out' });
+        gsap.to(img, { height: 150, opacity: 1, y: 0, duration: 0.2, ease: 'power2.out', delay: 0.1 });
+        gsap.to(title, { color: '#ff6b4a', x: 10, duration: 0.2, ease: 'power2.out' });
+        gsap.to(number, { color: '#ff6b4a', duration: 0.2, ease: 'power2.out' });
       } else {
-        gsap.to(desc, { height: 0, duration: 0.4, ease: 'power2.out' });
-        gsap.to(img, { opacity: 0, y: 20, duration: 0.4, ease: 'power2.out' });
+        gsap.to(desc, { height: 0, duration: 0.1, ease: 'power2.out' });
+        gsap.to(img, { height: 0, opacity: 0, y: 20, duration: 0.1, ease: 'power2.out' });
+        gsap.to(title, { color: '#888888', x: 0, duration: 0.1, ease: 'power2.out' });
+        gsap.to(number, { color: '#888888', duration: 0.1, ease: 'power2.out' });
       }
     });
   }, { dependencies: [activeIndex], scope: containerRef });

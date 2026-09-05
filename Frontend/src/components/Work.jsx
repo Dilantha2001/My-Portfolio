@@ -6,32 +6,25 @@ import './Work.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
-  {
-    id: '01',
-    title: 'CTO BEES',
-    desc: 'A boutique consulting firm uniting strategic foresight with technical depth — empowering businesses to transform, scale, and deliver exceptional customer experiences through the power of AI and a premium CTO-to-CMO partnership.',
-    bg: '#f9d287', // Pastel yellow
-    theme: 'dark-text',
-    img: 'https://images.unsplash.com/photo-1542744094-24638ea0b3b5?q=80&w=1200'
-  },
-  {
-    id: '02',
-    title: 'MANANA FILMS',
-    desc: 'Since the inception of RealBiomes in 2020 our goal was always clear, to package beyond AAA visual fidelity together with intuitive technical solutions allowing anyone from students to seasoned developers to create amazing worlds.',
-    bg: '#1c1c1c', // Dark grey
-    theme: 'light-text',
-    img: 'https://images.unsplash.com/photo-1481481312831-25ce5bd2827e?q=80&w=1200'
-  },
-  {
-    id: '03',
-    title: 'STUDIO LUNA',
-    desc: 'Award-winning creative agency specializing in immersive web experiences and brand identity design for forward-thinking companies.',
-    bg: '#e8dbd1', // Pastel beige
-    theme: 'dark-text',
-    img: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200'
-  }
+import { PORTFOLIO_INFO } from '../portfolioData';
+
+const projectColors = [
+  { bg: '#f9d287', theme: 'dark-text' },
+  { bg: '#1c1c1c', theme: 'light-text' },
+  { bg: '#e8dbd1', theme: 'dark-text' },
+  { bg: '#4a6572', theme: 'light-text' },
+  { bg: '#d4e1e8', theme: 'dark-text' },
+  { bg: '#2b2d42', theme: 'light-text' },
+  { bg: '#8d99ae', theme: 'dark-text' },
+  { bg: '#edf2f4', theme: 'dark-text' },
 ];
+
+const projects = PORTFOLIO_INFO.projects.map((proj, i) => ({
+  ...proj,
+  bg: projectColors[i % projectColors.length].bg,
+  theme: projectColors[i % projectColors.length].theme,
+  displayId: i < 9 ? `0${i + 1}` : `${i + 1}`
+}));
 
 export default function Work() {
   const containerRef = useRef();
@@ -110,17 +103,22 @@ export default function Work() {
           <div className="work-panel-inner">
             <div className="work-panel-header">
               <h2 className="work-title">{project.title}</h2>
-              <div className="work-number">({project.id})</div>
+              <div className="work-number">({project.displayId})</div>
             </div>
             
             <div className="work-desc">
-              {project.desc}
+              <p>{project.description}</p>
+              <div className="work-tags" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
+                {project.tags.map(tag => (
+                   <span key={tag} style={{ padding: '0.3rem 0.8rem', border: '1px solid currentColor', borderRadius: '1.5rem', fontSize: '0.85rem' }}>{tag}</span>
+                ))}
+              </div>
             </div>
 
             <div className="work-image-container">
               <div 
                 className="work-image-inner" 
-                style={{ backgroundImage: `url('${project.img}')` }}
+                style={{ backgroundImage: `url('${project.image}')` }}
               ></div>
             </div>
           </div>

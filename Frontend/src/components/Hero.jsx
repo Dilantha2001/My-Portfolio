@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { SplitText } from '../utils/SplitText';
+import { PORTFOLIO_INFO } from '../portfolioData';
 import './Hero.css';
 
 export default function Hero() {
@@ -65,7 +66,7 @@ export default function Hero() {
       <nav className="hero-nav">
         <div className="nav-logo">
           <div className="logo-square"></div>
-          NBNZIA
+          {PORTFOLIO_INFO.personal.name.split(' ')[0].toUpperCase()}
         </div>
         <div className="nav-links">
           <a href="#about">About</a>
@@ -82,10 +83,10 @@ export default function Hero() {
 
       <div className="hero-content">
         <h1 className="hero-title">
-          <span ref={title1Ref}><SplitText>EVERY GREAT TRICK</SplitText></span>
-          <span ref={title2Ref}><SplitText>HAS THREE PARTS.</SplitText></span>
-          <span ref={title3Ref} className="gold-text"><SplitText>YOUR WEBSITE</SplitText></span>
-          <span ref={title4Ref}><SplitText>IS THE PRESTIGE.</SplitText></span>
+          <span ref={title1Ref}><SplitText>HI, I'M {PORTFOLIO_INFO.personal.name.split(' ')[0].toUpperCase()}</SplitText></span>
+          <span ref={title2Ref}><SplitText>{PORTFOLIO_INFO.personal.title.toUpperCase()}</SplitText></span>
+          <span ref={title3Ref} className="gold-text"><SplitText>{PORTFOLIO_INFO.personal.headline.split(' · ').slice(0,2).join(' · ').toUpperCase()}</SplitText></span>
+          <span ref={title4Ref}><SplitText>BASED IN SRI LANKA</SplitText></span>
         </h1>
       </div>
     </section>
