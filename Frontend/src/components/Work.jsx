@@ -41,12 +41,15 @@ export default function Work() {
     
     panels.forEach((panel, i) => {
       // Pin each panel so they stack on top of each other
-      ScrollTrigger.create({
-        trigger: panel,
-        start: 'top top',
-        pin: true,
-        pinSpacing: false,
-      });
+      // We do NOT pin the last panel, so that it naturally scrolls up and pulls the next sections (Gallery, Footer) with it natively.
+      if (i < panels.length - 1) {
+        ScrollTrigger.create({
+          trigger: panel,
+          start: 'top top',
+          pin: true,
+          pinSpacing: false,
+        });
+      }
 
       // Parallax image inside each panel
       const innerImg = panel.querySelector('.work-image-inner');

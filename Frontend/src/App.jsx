@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,18 +8,24 @@ import SectionTwo from './components/SectionTwo';
 import Process from './components/Process';
 import Services from './components/Services';
 import Work from './components/Work';
+import ThreeParallaxGallery from './components/ThreeParallaxGallery';
+import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
 function App() {
-  useEffect(() => {
+  const lenisRef = useRef(null);
+
+  useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initialize Lenis for smooth scrolling
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
+      smoothWheel: true,
+      wheelMultiplier: 1,
     });
+
+    lenisRef.current = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -37,10 +44,13 @@ function App() {
   return (
     <>
       <Hero />
+      
       <SectionTwo />
       <Process />
       <Services />
       <Work />
+      <ThreeParallaxGallery />
+      <FAQ />
       <Footer />
     </>
   );
