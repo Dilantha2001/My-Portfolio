@@ -50,7 +50,7 @@ export default function Services() {
     gsap.to(marqueeRef.current, {
       xPercent: -50,
       ease: "none",
-      duration: 10,
+      duration: 30, // Increased duration to reduce speed
       repeat: -1
     });
   }, { scope: containerRef });
@@ -85,12 +85,10 @@ export default function Services() {
   return (
     <section className="services-section" ref={containerRef} id="services">
       
-      <div className="services-marquee" style={{ overflow: 'hidden' }}>
+      <div className="services-marquee" style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}>
         <div ref={marqueeRef} style={{ display: 'flex', width: 'fit-content' }}>
-          <span>WHAT I DO <span className="heart">❤️</span> WHAT I DO <span className="heart">❤️</span> WHAT I DO <span className="heart">❤️</span></span>
-          <span>WHAT I DO <span className="heart">❤️</span> WHAT I DO <span className="heart">❤️</span> WHAT I DO <span className="heart">❤️</span></span>
-          <span>WHAT I DO <span className="heart">❤️</span> WHAT I DO <span className="heart">❤️</span> WHAT I DO <span className="heart">❤️</span></span>
-          <span>WHAT I DO <span className="heart">❤️</span> WHAT I DO <span className="heart">❤️</span> WHAT I DO <span className="heart">❤️</span></span>
+          <span>E-COMMERCE APPS &nbsp;&nbsp;-&nbsp;&nbsp; SOCIAL PLATFORMS &nbsp;&nbsp;-&nbsp;&nbsp; ADMIN DASHBOARDS &nbsp;&nbsp;-&nbsp;&nbsp; SAAS PRODUCTS &nbsp;&nbsp;-&nbsp;&nbsp; WEB PORTFOLIOS &nbsp;&nbsp;-&nbsp;&nbsp; CMS PLATFORMS &nbsp;&nbsp;-&nbsp;&nbsp; E-COMMERCE APPS &nbsp;&nbsp;-&nbsp;&nbsp; SOCIAL PLATFORMS &nbsp;&nbsp;-&nbsp;&nbsp; ADMIN DASHBOARDS &nbsp;&nbsp;-&nbsp;&nbsp; SAAS PRODUCTS &nbsp;&nbsp;-&nbsp;&nbsp; WEB PORTFOLIOS &nbsp;&nbsp;-&nbsp;&nbsp; CMS PLATFORMS &nbsp;&nbsp;-&nbsp;&nbsp; </span>
+          <span>E-COMMERCE APPS &nbsp;&nbsp;-&nbsp;&nbsp; SOCIAL PLATFORMS &nbsp;&nbsp;-&nbsp;&nbsp; ADMIN DASHBOARDS &nbsp;&nbsp;-&nbsp;&nbsp; SAAS PRODUCTS &nbsp;&nbsp;-&nbsp;&nbsp; WEB PORTFOLIOS &nbsp;&nbsp;-&nbsp;&nbsp; CMS PLATFORMS &nbsp;&nbsp;-&nbsp;&nbsp; E-COMMERCE APPS &nbsp;&nbsp;-&nbsp;&nbsp; SOCIAL PLATFORMS &nbsp;&nbsp;-&nbsp;&nbsp; ADMIN DASHBOARDS &nbsp;&nbsp;-&nbsp;&nbsp; SAAS PRODUCTS &nbsp;&nbsp;-&nbsp;&nbsp; WEB PORTFOLIOS &nbsp;&nbsp;-&nbsp;&nbsp; CMS PLATFORMS &nbsp;&nbsp;-&nbsp;&nbsp; </span>
         </div>
       </div>
       

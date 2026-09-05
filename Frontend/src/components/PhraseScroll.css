@@ -1,0 +1,46 @@
+.phrase-scroll-section {
+  background-color: #ffffff;
+  color: #000000;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.phrase-scroll-container {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.phrase-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.phrase-scroll-text {
+  font-size: 8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0;
+  will-change: transform;
+  font-family: 'Inter', 'Outfit', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .phrase-scroll-text {
+    font-size: 4rem;
+  }
+  .phrase-scroll-section {
+    padding: 6rem 0;
+  }
+}

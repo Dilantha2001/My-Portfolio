@@ -7,7 +7,9 @@ import Hero from './components/Hero';
 import SectionTwo from './components/SectionTwo';
 import Process from './components/Process';
 import Services from './components/Services';
+import FrontendWorks from './components/FrontendWorks';
 import Work from './components/Work';
+import PhraseScroll from './components/PhraseScroll';
 import ThreeParallaxGallery from './components/ThreeParallaxGallery';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
@@ -48,7 +50,9 @@ function App() {
       <SectionTwo />
       <Process />
       <Services />
+      <FrontendWorks />
       <Work />
+      <PhraseScroll />
       <ThreeParallaxGallery />
       <FAQ />
       <Footer />
